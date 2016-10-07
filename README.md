@@ -3,5 +3,5 @@ GAM100 Project
 
 Current Build has these implementations:
 
-Movement of Player (Bounded by level)
+Movement of Player (Bounded by level)\n
 Firing of weapons
