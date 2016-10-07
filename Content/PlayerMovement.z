@@ -1,0 +1,41 @@
+class PlayerMovement : ZilchComponent
+{
+    [Property]
+    var PlayerSpeed:Real = 10;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var position = this.Owner.Transform.Translation;
+        //Movement of player
+        if(Zero.Keyboard.KeyIsDown(Keys.Right))
+        {
+            if(position.X < 9)
+            position.X += this.PlayerSpeed * event.Dt;
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.Left))
+        {
+            if(position.X > -9)
+            position.X -= this.PlayerSpeed * event.Dt;
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.Up))
+        {
+            if(position.Y < 11.5)
+            position.Y += this.PlayerSpeed * event.Dt;
+        }
+        
+        else if(Zero.Keyboard.KeyIsDown(Keys.Down))
+        {   
+            if(position.Y > -11.5)
+            position.Y -= this.PlayerSpeed * event.Dt;
+        }
+        
+        this.Owner.Transform.Translation = position;        
+    }
+}
