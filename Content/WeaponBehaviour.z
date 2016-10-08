@@ -31,6 +31,15 @@ class WeaponBehaviour : ZilchComponent
                 this.Fire();
             }
         }
+        
+        if(this.Owner.Name == "Player1")
+        {
+            if (event.TimePassed > this.NextShot)
+            {
+                this.NextShot = event.TimePassed + this.ShootDelay;
+                this.Fire();
+            }
+        }
     }
     
     function Fire()

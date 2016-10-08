@@ -10,7 +10,7 @@ Cog =
 	},
 	Archetyped = 
 	{
-		string Name = "57a1a732c55848e6:Bullet",
+		string Name = "57ae13a6bd5f4afb:BulletGhost",
 	},
 	Transform = 
 	{
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.463241041, 0.290549994, 0.745000005, 1],
+		Vec4 Color = [0.462745249, 0.290196091, 0.745098054, 0.5],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -38,7 +38,7 @@ Cog =
 	},
 	BoxCollider = 
 	{
-		bool Ghost = false,
+		bool Ghost = true,
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
