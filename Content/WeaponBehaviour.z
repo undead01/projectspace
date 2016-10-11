@@ -46,10 +46,11 @@ class WeaponBehaviour : ZilchComponent
     {
         var bulletPosition = this.Transform.WorldTranslation;
         bulletPosition.Z = -0.1;
+
         var bullet = this.Space.CreateAtPosition(this.Bullet, bulletPosition);
-        
+
         var firingDirection = Real3(0, 1, 0);
-        
+
         bullet.RigidBody.Velocity = firingDirection * this.BulletSpeed;
     }
 }

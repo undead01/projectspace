@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "HPLogic",
+		uint64 ResourceId = 572d2e0b9b8ba573,
+	},
+},
