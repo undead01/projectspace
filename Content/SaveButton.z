@@ -12,7 +12,7 @@ class SaveButton : ZilchComponent
     {
         if(this.Owner.Name == "SaveButton")
         {
-            var weapon1Array = this.Space.FindObjectByName("Checkbox").CheckBoxBehaviour.Weapon1;
+            var weapon1Array = this.Space.FindObjectByName("CheckboxPenetrating").CheckBoxBehaviour.Weapon1;
             this.DataCog.DataSaver.Weapon1 = weapon1Array;
             this.DataCog.DataSaver.Int = 1;
             Zero.ObjectStore.Store("Data", this.DataCog);

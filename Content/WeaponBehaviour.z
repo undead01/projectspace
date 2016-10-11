@@ -16,6 +16,8 @@ class WeaponBehaviour : ZilchComponent
     var ShootDelay : Real = 0.2;
     var NextShot : Real = 0;
     
+    var Spread: Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -28,7 +30,7 @@ class WeaponBehaviour : ZilchComponent
             if (event.TimePassed > this.NextShot)
             {
                 this.NextShot = event.TimePassed + this.ShootDelay;
-                this.Fire();
+                this.Fire(this.Spread);
             }
         }
         
@@ -37,19 +39,39 @@ class WeaponBehaviour : ZilchComponent
             if (event.TimePassed > this.NextShot)
             {
                 this.NextShot = event.TimePassed + this.ShootDelay;
-                this.Fire();
+                this.Fire(this.Spread);
             }
         }
     }
     
-    function Fire()
+    function Fire(spread:Boolean)
     {
-        var bulletPosition = this.Transform.WorldTranslation;
-        bulletPosition.Z = -0.1;
-        var bullet = this.Space.CreateAtPosition(this.Bullet, bulletPosition);
-        
-        var firingDirection = Real3(0, 1, 0);
-        
-        bullet.RigidBody.Velocity = firingDirection * this.BulletSpeed;
+        if(spread == false)
+        {
+            var bulletPosition = this.Transform.WorldTranslation;
+            bulletPosition.Z = -0.1;
+            var bullet = this.Space.CreateAtPosition(this.Bullet, bulletPosition);
+            
+            var firingDirection = Real3(0, 1, 0);
+            
+            bullet.RigidBody.Velocity = firingDirection * this.BulletSpeed;
+        }
+        if(spread == true)
+        {
+            var bulletPosition = this.Transform.WorldTranslation;
+            bulletPosition.Z = -0.1;
+            
+            var bullet1 = this.Space.CreateAtPosition(this.Bullet, bulletPosition);
+            var firingDirection = Real3(0, 1, 0);
+            bullet1.RigidBody.Velocity = firingDirection * this.BulletSpeed;
+            
+            var bullet2 = this.Space.CreateAtPosition(this.Bullet, bulletPosition);
+            firingDirection = Real3(0.25, 1, 0);
+            bullet2.RigidBody.Velocity = firingDirection * this.BulletSpeed;
+            
+            var bullet3 = this.Space.CreateAtPosition(this.Bullet, bulletPosition);
+            firingDirection = Real3(-0.25, 1, 0);
+            bullet3.RigidBody.Velocity = firingDirection * this.BulletSpeed;
+        }
     }
 }

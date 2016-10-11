@@ -1,36 +1,52 @@
 class CheckBoxBehaviour : ZilchComponent
 {
-    var Flag :Real = 0;
     
-    [Serialized]
-    var Weapon1 : Array[Boolean] = Array[Boolean]();
+    var Weapon1 : Array[Integer] = Array[Integer]();
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.MouseDown, this.OnMouseDown);
-        this.Weapon1.Add(false);
+        this.Weapon1.Add(0);
+        this.Weapon1.Add(0);
     }
 
     function OnMouseDown(event : ViewportMouseEvent)
     {
-        if(this.Owner.Name == "Checkbox")
+        if(this.Owner.Name == "CheckboxPenetrating")
         {
             //Uncheck
-            if(this.Flag == 1)
+            if(this.Owner.Sprite.Color == Real4(103,103,103,1))
             {
                 this.Owner.Sprite.Color = Real4(10,10,10,1);
-                this.Flag = 0;
                 this.Space.FindObjectByName("Player1").WeaponBehaviour.Bullet = Archetype.Bullet;
-                this.Weapon1[0] = false;
+                this.Weapon1[0] = 0;
             }
             //Check
             else
             {
                 this.Owner.Sprite.Color = Real4(103,103,103,1);
-                this.Flag = 1;
                 this.Space.FindObjectByName("Player1").WeaponBehaviour.Bullet = Archetype.BulletGhost;
-                this.Weapon1[0] = true;
+                this.Weapon1[0] = 1;
             }
         }
+        
+        if(this.Owner.Name == "CheckboxSpread")
+        {
+            //Uncheck
+            if(this.Owner.Sprite.Color == Real4(103,103,103,1))
+            {
+                this.Owner.Sprite.Color = Real4(10,10,10,1);
+                this.Space.FindObjectByName("Player1").WeaponBehaviour.Spread = false;
+                this.Space.FindObjectByName("CheckboxPenetrating").CheckBoxBehaviour.Weapon1[1] = 0;
+            }
+            //Check
+            else
+            {
+                this.Owner.Sprite.Color = Real4(103,103,103,1);
+                this.Space.FindObjectByName("Player1").WeaponBehaviour.Spread = true;
+                this.Space.FindObjectByName("CheckboxPenetrating").CheckBoxBehaviour.Weapon1[1] = 1;
+            }
+        }
+        
     }
 }

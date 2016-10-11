@@ -10,7 +10,7 @@ class BulletBehaviour : ZilchComponent
     {
         var otherObject = event.OtherObject;
         
-        if(otherObject.Name != "Player1" && otherObject.Name != "Player")
+        if(otherObject.Name != "Player1" && otherObject.Name != "Player" && otherObject.Name != this.Owner.Name)
         {
             if(this.Owner.ArchetypeName == "BulletGhost")
             {
